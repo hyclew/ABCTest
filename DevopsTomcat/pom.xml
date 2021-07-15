@@ -67,11 +67,17 @@
                     </execution>
                     <execution>
                         <id>report</id>
-<!--                        <phase>test</phase>-->
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
+<!--                        <phase>prepare-package</phase>-->
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/Add.class</include>
+                                <include>**/App.class</include>
+                            </includes>
+                        </configuration>
                     </execution>
 <!--                    <execution>
                         <id>post-unit-test</id>
