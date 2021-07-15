@@ -55,63 +55,40 @@
                 <version>2.22.2</version>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <skip>false</skip>
-                    <!--这个标签一般不在这配置,一般跟着命令后面作为参数使用-->
-                    <!--<format>xml</format>-->
-                    <formats>
-                        <format>xml</format>
-                        <format>html</format>
-                    </formats>
-                    <instrumentation>
-                        <includes>
-                            <include>**/Add.class</include>
-                        </includes>
-                        <!--这种方式我没试验成功.如果有谁配置生效了,请留言告知 http://qyf404.cnblogs.com-->
-                        <!--<ignores>
-                          <ignore>com.example.boringcode.*</ignore>
-                        </ignores>-->
-                        <!--忽略列表.根据class文件路径进行匹配-->
-                        <excludes>
-                            <exclude>com/qyf404/learn/**/App.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                    <check>
-                        <!--每个类的分支覆盖率-->
-                        <branchRate>85</branchRate>
-                        <!--每个类的代码行覆盖率-->
-                        <lineRate>85</lineRate>
-                        <!--校验失败则中止.即为true时如果校验失败则打包执行失败,反之则只是打出告警日志-->
-                        <haltOnFailure>true</haltOnFailure>
-                        <!--整体的分支覆盖率-->
-                        <totalBranchRate>85</totalBranchRate>
-                        <!--整体的代码行覆盖率-->
-                        <totalLineRate>85</totalLineRate>
-                        <!--每个包的分支行覆盖率-->
-                        <packageBranchRate>85</packageBranchRate>
-                        <!--每个包的代码行覆盖率-->
-                        <packageLineRate>85</packageLineRate>
-                        <regexes>
-                            <!--通过表达式设定覆盖率伐值-->
-                            <regex>
-                                <pattern>com.qyf404.learn.*</pattern>
-                                <branchRate>90</branchRate>
-                                <lineRate>80</lineRate>
-                            </regex>
-                        </regexes>
-                    </check>
-                </configuration>
-<!--                <executions>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
-                            <goal>check</goal>
+                            <goal>prepare-agent</goal>
                         </goals>
-                        <phase>prepare-package</phase>
                     </execution>
-                </executions>-->
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+<!--                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>target/jacoco.exec</dataFile>
+                            <outputDirectory>target/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>-->
+                </executions>
+ <!--               <configuration>
+                    <systemPropertyVariables>
+                        <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+                    </systemPropertyVariables>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>
