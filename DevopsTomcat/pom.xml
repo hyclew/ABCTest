@@ -26,6 +26,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -53,11 +54,29 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                        <include>**/AppTest.java</include>
+                    </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.7</version>
+                <configuration>
+                    <includes>
+                        <include>**/Add*</include>
+                        <include>**/App*</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Add.class</exclude>
+                        <exclude>**/*Controller.class</exclude>
+                        <exclude>**/*Application.class</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -72,14 +91,8 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/Add.class</include>
-                                <include>**/App.class</include>
-                            </includes>
-                        </configuration>
                     </execution>
-<!--                    <execution>
+                    <!--<execution>
                         <id>post-unit-test</id>
                         <phase>test</phase>
                         <goals>
@@ -90,8 +103,14 @@
                             <outputDirectory>target/jacoco-ut</outputDirectory>
                         </configuration>
                     </execution>-->
+                    <!--<execution>
+                        <id>default-instrument</id>
+                        <goals>
+                            <goal>instrument</goal>
+                        </goals>
+                    </execution>-->
                 </executions>
- <!--               <configuration>
+                <!--<configuration>
                     <systemPropertyVariables>
                         <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
                     </systemPropertyVariables>
