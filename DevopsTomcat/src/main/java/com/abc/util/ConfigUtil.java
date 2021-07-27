@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigUtil {
 
-//    private static String serverPort;
-//
-//    @Value("${serverPort}")
-//    public void setServerPort(String serverPort){
-//        ConfigUtil.serverPort = serverPort;
-//    }
-//
-//    public static void read(String key) {
-//
-//    }
+    private static String serverPort;
+
+    @Value("${server.port}")
+    public void setServerPort(String serverPort){
+        ConfigUtil.serverPort = serverPort;
+    }
+
+    public static void read(String key) {
+
+    }
 }
