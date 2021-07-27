@@ -1,0 +1,72 @@
+jacoco配置
+
+```xml
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+            <skipTests>false</skipTests>
+            <testFailureIgnore>true</testFailureIgnore>
+            <includes>
+                <include>**/AppTest.java</include>
+            </includes>
+        </configuration>
+    </plugin>
+    <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <configuration>
+            <includes>
+                <include>**/Add*</include>
+                <include>**/App*</include>
+            </includes>
+            <excludes>
+                <exclude>**/Add.class</exclude>
+                <exclude>**/*Controller.class</exclude>
+                <exclude>**/*Application.class</exclude>
+            </excludes>
+        </configuration>
+        <executions>
+            <execution>
+                <id>prepare-agent</id>
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>report</id>
+                <phase>test</phase>
+                <!--        <phase>prepare-package</phase>-->
+                <goals>
+                    <goal>report</goal>
+                </goals>
+            </execution>
+            <!--<execution>
+                <id>post-unit-test</id>
+                <phase>test</phase>
+                <goals>
+                    <goal>report</goal>
+                </goals>
+                <configuration>
+                    <dataFile>target/jacoco.exec</dataFile>
+                    <outputDirectory>target/jacoco-ut</outputDirectory>
+                </configuration>
+            </execution>-->
+            <!--<execution>
+                <id>default-instrument</id>
+                <goals>
+                    <goal>instrument</goal>
+                </goals>
+            </execution>-->
+        </executions>
+        <configuration>
+            <systemPropertyVariables>
+                <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+            </systemPropertyVariables>
+        </configuration>
+    </plugin>
+</plugins>
+```
