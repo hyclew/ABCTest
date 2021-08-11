@@ -23,12 +23,12 @@ public class StaticTest {
     }
 
     public static void main(String[] args) {
-        //System.out.println(age);
+        System.out.println("age:" + age);
         StaticTest.show();
         StaticTest t = new StaticTest();
         StaticTest.show();
         t.fun();
-        /*System.out.println(t.age1);*/
+        System.out.println("t.age1:" + t.age1);
 
         String a = Boolean.toString(true);
         System.out.println(a);
