@@ -10,8 +10,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>DevopsTomcat</module>
-<!--        <module>log-interceptor</module>-->
-<!--        <module>spring-boot-demo</module>-->
+        <module>log-interceptor</module>
+        <module>spring-boot-demo</module>
+        <module>batchTest</module>
     </modules>
 
     <properties>
